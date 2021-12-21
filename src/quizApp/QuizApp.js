@@ -6,9 +6,13 @@ import { useState } from 'react';
 function QuizApp() {
 
 const [counter, setCounter] = useState(0);
+const [correct, setCorrect] = useState(0);
+const [inCorrect, setIncorrect] = useState(0);
+
 const [finished, setFinished] = useState(false)
 
 function ctaHandler(){
+  
 if(counter+1 < dataSet.length){
 setCounter(counter+1);
 }
@@ -21,12 +25,12 @@ console.log('counter', counter)
     return (
         <div>
           <h1>JavaScript Quiz</h1>
-          <Question question={dataSet[counter]}/>  
+          <Question question={dataSet[counter]} result={[setCorrect, setIncorrect]} finish={finished}/>  
 
           {finished ? <p>Thank you for completing the test</p> : <></>}
           <button onClick={ctaHandler}>Submit</button>
-          <p>Correct: 0</p>
-          <p>Incorrect: 0</p>
+          <p>Correct: {correct}</p>
+          <p>Incorrect: {inCorrect}</p>
 
         </div>
     )
